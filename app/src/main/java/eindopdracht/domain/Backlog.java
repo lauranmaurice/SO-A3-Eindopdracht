@@ -7,21 +7,21 @@ import java.util.List;
  * Backlog
  */
 public class Backlog {
-    private List<BacklogComponent> items;
+    private List<BacklogTask> items;
 
     public Backlog() { 
         this.items = new ArrayList<>();
     }
 
-    public List<BacklogComponent> getItems() {
+    public List<BacklogTask> getItems() {
         return items;
     }
 
-    public void addItem(BacklogComponent item) {
+    public void addItem(BacklogTask item) {
         this.items.add(item);
     }
 
-    public void removeItem(BacklogComponent item) {
+    public void removeItem(BacklogTask item) {
         this.items.remove(item);
     }
 }

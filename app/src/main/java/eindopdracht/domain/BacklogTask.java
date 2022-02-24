@@ -3,7 +3,7 @@ package eindopdracht.domain;
 /**
  * BacklogTask
  */
-public class BacklogTask extends BacklogComponent {
+public class BacklogTask {
 
     private Person person;
 
