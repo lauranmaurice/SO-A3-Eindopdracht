@@ -1,4 +1,6 @@
 # Eindopdracht
+[![Java CI with Gradle](https://github.com/lauranmaurice/SO-A3-Eindopdracht/actions/workflows/gradle.yml/badge.svg)](https://github.com/lauranmaurice/SO-A3-Eindopdracht/actions/workflows/gradle.yml)
+
 Dit is de eindopdracht van Lauran en Maurice
 
 # Links naar diagrammen
