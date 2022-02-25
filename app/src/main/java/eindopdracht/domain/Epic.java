@@ -9,6 +9,7 @@ public class Epic {
     private String title;
     private String description;
     private List<BacklogItem> items;
+    private boolean completed = false;
 
     public Epic(int number, String title, String description){
         setNumber(number);
@@ -17,7 +18,14 @@ public class Epic {
         items = new ArrayList<>();
     }
 
-    // items functions
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
     public List<BacklogItem> getItems() {
         return items;
     }
@@ -30,7 +38,6 @@ public class Epic {
         this.items.remove(item);
     }
 
-    // description functions
     public String getDescription() {
         return description;
     }
@@ -39,7 +46,6 @@ public class Epic {
         this.description = description;
     }
 
-    // title functions
     public String getTitle() {
         return title;
     }
@@ -48,7 +54,6 @@ public class Epic {
         this.title = title;
     }
 
-    // number functions
     public int getNumber() {
         return number;
     }

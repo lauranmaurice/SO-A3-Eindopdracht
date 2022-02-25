@@ -22,7 +22,6 @@ public class Project {
         setProductOwner(productOwner);
     }
 
-    //funtions name;
     public String getName(){
         return this.name;
     }
@@ -31,7 +30,6 @@ public class Project {
         this.name = name;
     }
 
-    //functions backlog;
     public Backlog getBacklog(){
         return this.backlog;
     }
@@ -40,7 +38,6 @@ public class Project {
         this.backlog = backlog;
     }
 
-    //functions Sprints
     public List<Sprint> getSprints() {
         return sprints;
     }
@@ -53,7 +50,6 @@ public class Project {
         this.sprints.remove(sprint);
     }
 
-    //funtions Productowner
     public void setProductOwner(ProductOwner productOwner){
         this.productOwner = productOwner;
     }
@@ -62,7 +58,6 @@ public class Project {
         return this.productOwner;
     }
 
-    // functions persons
     public void addPerson(Person person){
         this.persons.add(person);
     }

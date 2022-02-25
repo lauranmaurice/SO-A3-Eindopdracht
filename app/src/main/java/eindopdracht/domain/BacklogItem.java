@@ -8,18 +8,37 @@ public class BacklogItem {
     private int number;
     private String title;
     private String description;
-    private Person person;
+    private Person developer;
+    private Person tester;
     private List<BacklogTask> tasks;
 
-    public BacklogItem(int number, String title, String description, Person person){
+    public BacklogItem(int number, String title, String description){
         setNumber(number);
         setTitle(title);
         setDescription(description);
-        setPerson(person);
         this.tasks = new ArrayList<>();
     }
 
-    // functions number
+    public Person getTester() {
+        return tester;
+    }
+
+    public void setTester(Person tester) {
+        if (tester.isTester()){
+            this.tester = tester;
+        }
+    }
+
+    public Person getDeveloper() {
+        return developer;
+    }
+
+    public void setDeveloper(Person developer) {
+        if (developer.isDeveloper()){
+            this.developer = developer;
+        }
+    }
+
     public int getNumber(){
         return this.number;
     }
@@ -28,7 +47,6 @@ public class BacklogItem {
         this.number = number;
     }
 
-    // functions title
     public String getTitle(){
         return this.title;
     }
@@ -37,7 +55,6 @@ public class BacklogItem {
         this.title = title;
     }
 
-    // functions description
     public String getDescription(){
         return this.description;
     }
@@ -46,16 +63,6 @@ public class BacklogItem {
         this.description = description;
     }
 
-    // functions person
-    public Person getPerson(){
-        return this.person;
-    }
-
-    public void setPerson(Person person){
-        this.person = person;
-    }
-
-    // functions task
     public void addTask(BacklogTask task){
         this.tasks.add(task);
     }
