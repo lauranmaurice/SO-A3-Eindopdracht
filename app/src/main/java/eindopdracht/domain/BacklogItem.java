@@ -24,7 +24,7 @@ public class BacklogItem {
     }
 
     public void setTester(Person tester) {
-        if (tester.isTester()){
+        if (tester.canTest()){
             this.tester = tester;
         }
     }
@@ -34,7 +34,7 @@ public class BacklogItem {
     }
 
     public void setDeveloper(Person developer) {
-        if (developer.isDeveloper()){
+        if (developer.canDevelop()){
             this.developer = developer;
         }
     }

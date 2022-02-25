@@ -1,5 +1,9 @@
 package eindopdracht.domain;
 
+import eindopdracht.domain.behaviour.DeveloperBehaviour;
+import eindopdracht.domain.behaviour.ScrumMasterBehaviour;
+import eindopdracht.domain.behaviour.TestBehaviour;
+
 /**
  * Person
  */
@@ -8,41 +12,54 @@ public class Person {
     private String name;
     private String email;
     private String phonenumber;
-    private boolean developer;
-    private boolean tester;
-    private boolean scrumMaster;
+    private DeveloperBehaviour developerBehaviour;
+    private TestBehaviour testerBehaviour;
+    private ScrumMasterBehaviour scrumMasterBehaviour;
 
-    public Person(String name, String email, String phonenumber, boolean developer, boolean tester, boolean scrumMaster){
+    public Person(String name, String email, String phonenumber, DeveloperBehaviour developerBehaviour, TestBehaviour testerBehaviour, ScrumMasterBehaviour scrumMasterBehaviour){
         setName(name);
         setEmail(email);
         setPhonenumber(phonenumber);
-        setDeveloper(developer);
-        setTester(tester);
-        setScrumMaster(scrumMaster);
+        setDeveloperBehaviour(developerBehaviour);
+        setTesterBehaviour(testerBehaviour);
+        setScrumMasterBehaviour(scrumMasterBehaviour);
     }
 
-    public boolean isScrumMaster() {
-        return scrumMaster;
+    public void develop(){
+        this.developerBehaviour.develop();
     }
 
-    public void setScrumMaster(boolean scrumMaster) {
-        this.scrumMaster = scrumMaster;
+    public boolean canDevelop(){
+        return this.developerBehaviour.canDevelop();
     }
 
-    public boolean isTester() {
-        return tester;
+    public void test(){
+        this.testerBehaviour.test();
     }
 
-    public void setTester(boolean tester) {
-        this.tester = tester;
+    public boolean canTest(){
+        return this.testerBehaviour.canTest();
     }
 
-    public boolean isDeveloper() {
-        return developer;
+    public void scrum(){
+        this.scrumMasterBehaviour.scrum();
     }
 
-    public void setDeveloper(boolean developer) {
-        this.developer = developer;
+    public boolean canScrum(){
+        return this.scrumMasterBehaviour.canScrum();
+    }
+
+
+    public void setDeveloperBehaviour(DeveloperBehaviour developerBehaviour){
+        this.developerBehaviour = developerBehaviour;
+    }
+
+    public void setTesterBehaviour(TestBehaviour testBehaviour){
+        this.testerBehaviour = testBehaviour;
+    }
+
+    public void setScrumMasterBehaviour(ScrumMasterBehaviour scrumMasterBehaviour){
+        this.scrumMasterBehaviour = scrumMasterBehaviour;
     }
 
     public String getPhonenumber() {
@@ -67,30 +84,6 @@ public class Person {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void develop(){
-        if (this.developer){
-            System.out.println("I am developing.");
-        } else {
-            System.out.println("doing nothing");
-        }
-    }
-
-    public void test(){
-        if (this.tester){
-            System.out.println("I am testing");
-        } else {
-            System.out.println("doing nothing");
-        }
-    }
-
-    public void scrumming(){
-        if (this.scrumMaster){
-            System.out.println("I am holding a meeting.");
-        } else {
-            System.out.println("doing nothing");
-        }
     }
     
 }
