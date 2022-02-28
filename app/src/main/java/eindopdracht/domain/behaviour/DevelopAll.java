@@ -8,8 +8,8 @@ public class DevelopAll implements DeveloperBehaviour{
     }
 
     @Override
-    public void develop() {
-        System.out.println("Developing.");
+    public String develop() {
+        return "Developing.";
     }
     
 }

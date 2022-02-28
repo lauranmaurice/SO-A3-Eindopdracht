@@ -3,6 +3,8 @@ package eindopdracht.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import eindopdracht.domain.backlog.Backlog;
+
 /**
  * Project
  */

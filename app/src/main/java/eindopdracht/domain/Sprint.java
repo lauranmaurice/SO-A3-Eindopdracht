@@ -1,5 +1,7 @@
 package eindopdracht.domain;
 
+import eindopdracht.domain.backlog.Backlog;
+
 /**
  * Sprint
  */

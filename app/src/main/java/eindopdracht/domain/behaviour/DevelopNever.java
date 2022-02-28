@@ -8,8 +8,8 @@ public class DevelopNever implements DeveloperBehaviour{
     }
 
     @Override
-    public void develop() {
-        System.out.println("Not allowed to develop.");
+    public String develop() {
+        return "Not allowed to develop.";
     }
     
 }

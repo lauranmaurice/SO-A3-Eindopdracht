@@ -5,6 +5,6 @@ package eindopdracht.domain.behaviour;
  */
 public interface ScrumMasterBehaviour {
     public boolean canScrum();
-    public void scrum();
+    public String scrum();
     
 }
