@@ -3,6 +3,8 @@ package eindopdracht.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import eindopdracht.domain.backlog.Backlog;
+
 /**
  * Project
  */
@@ -14,11 +16,11 @@ public class Project {
     private ProductOwner productOwner;
     private Backlog backlog;
 
-    public Project(String name, ProductOwner productOwner, Backlog backlog) {
+    public Project(String name, ProductOwner productOwner) {
         setName(name);
         this.sprints = new ArrayList<>();
         this.persons = new ArrayList<>();
-        setBacklog(backlog);;
+        this.backlog = new Backlog();
         setProductOwner(productOwner);
     }
 
@@ -32,10 +34,6 @@ public class Project {
 
     public Backlog getBacklog(){
         return this.backlog;
-    }
-
-    public void setBacklog(Backlog backlog){
-        this.backlog = backlog;
     }
 
     public List<Sprint> getSprints() {

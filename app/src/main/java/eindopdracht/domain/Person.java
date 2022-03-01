@@ -25,24 +25,24 @@ public class Person {
         setScrumMasterBehaviour(scrumMasterBehaviour);
     }
 
-    public void develop(){
-        this.developerBehaviour.develop();
+    public String develop(){
+        return this.developerBehaviour.develop();
     }
 
     public boolean canDevelop(){
         return this.developerBehaviour.canDevelop();
     }
 
-    public void test(){
-        this.testerBehaviour.test();
+    public String test(){
+        return this.testerBehaviour.test();
     }
 
     public boolean canTest(){
         return this.testerBehaviour.canTest();
     }
 
-    public void scrum(){
-        this.scrumMasterBehaviour.scrum();
+    public String scrum(){
+        return this.scrumMasterBehaviour.scrum();
     }
 
     public boolean canScrum(){

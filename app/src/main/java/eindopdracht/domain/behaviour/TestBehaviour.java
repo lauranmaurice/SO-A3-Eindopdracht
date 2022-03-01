@@ -6,7 +6,7 @@ package eindopdracht.domain.behaviour;
 public interface TestBehaviour {
 
     public boolean canTest();
-    public void test();
+    public String test();
 
 
 }

@@ -8,8 +8,8 @@ public class ScrumNever implements ScrumMasterBehaviour {
     }
 
     @Override
-    public void scrum() {
-        System.out.println("Can't scrum.");
+    public String scrum() {
+        return "Can't scrum.";
     }
     
 }

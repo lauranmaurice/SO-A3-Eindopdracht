@@ -8,8 +8,8 @@ public class ScrumAll implements ScrumMasterBehaviour {
     }
 
     @Override
-    public void scrum() {
-       System.out.println("Scrumming");        
+    public String scrum() {
+       return "Scrumming";        
     }
     
 }
