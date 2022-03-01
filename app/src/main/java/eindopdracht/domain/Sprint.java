@@ -14,23 +14,17 @@ public class Sprint {
 
     
 
-    public Sprint(String sprintName, int sprintNumber, Backlog backlog, Forum forum) {
+    public Sprint(String sprintName, int sprintNumber) {
         this.setSprintName(sprintName);
         this.setSprintNumber(sprintNumber);
-        this.setBacklog(backlog);
-        this.setForum(forum);
+        this.backlog = new Backlog();
+        this.forum = new Forum();
     }
 
-    // forum functions
     public Forum getForum() {
         return forum;
     }
 
-    public void setForum(Forum forum) {
-        this.forum = forum;
-    }
-
-    // functions sprintName
     public String getSprintName(){
         return this.sprintName;
     }
@@ -39,7 +33,6 @@ public class Sprint {
         this.sprintName = sprintName;
     }
 
-    // functions sprintNumber
     public int getSprintNumber() {
         return sprintNumber;
     }
@@ -51,10 +44,6 @@ public class Sprint {
     // functions backlog
     public Backlog getBacklog() {
         return backlog;
-    }
-
-    public void setBacklog(Backlog backlog) {
-        this.backlog = backlog;
     }
     
 }
