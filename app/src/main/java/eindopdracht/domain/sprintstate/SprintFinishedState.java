@@ -49,7 +49,7 @@ public class SprintFinishedState implements SprintState{
 
     @Override
     public String holdSprintReview() {
-        this.sprint.setState(this.sprint.getReviewDone());
+        this.sprint.setState(this.sprint.getReviewDoneState());
         return "Review has been held.";
     }
 

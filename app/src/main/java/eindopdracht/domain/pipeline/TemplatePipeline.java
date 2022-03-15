@@ -1,9 +1,18 @@
 package eindopdracht.domain.pipeline;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * TemplatePipeline
  */
 public abstract class TemplatePipeline {
+    public List<String> commandHistory;
+
+    protected TemplatePipeline()
+    {
+        commandHistory = new ArrayList<>();
+    }
 
     public final void run() {
         /* Template */
@@ -13,12 +22,14 @@ public abstract class TemplatePipeline {
         installPackages();
         runTests();
         analyze(sources);
+        build();
         deploy();
         runUtilities();
     }
 
     protected void runCliCommand(String command) {
         System.out.println("Running command: "+command);
+        commandHistory.add(command);
     }
 
     public abstract String[] collectSources();

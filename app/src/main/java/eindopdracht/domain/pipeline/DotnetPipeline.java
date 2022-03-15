@@ -18,7 +18,6 @@ public class DotnetPipeline extends TemplatePipeline {
     @Override
     public void build() {
         super.runCliCommand("dotnet build");
-        super.runCliCommand("dotnet publish -c Release");
     }
 
     @Override
@@ -28,6 +27,7 @@ public class DotnetPipeline extends TemplatePipeline {
 
     @Override
     public void deploy() {
+        super.runCliCommand("dotnet publish -c Release");
         //deploy to Azure, if azure is selected
     }
 }

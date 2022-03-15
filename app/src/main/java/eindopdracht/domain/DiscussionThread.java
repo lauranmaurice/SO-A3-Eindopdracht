@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eindopdracht.domain.backlog.BacklogItem;
+import eindopdracht.domain.observers.Subject;
 
-public class DiscussionThread {
+public class DiscussionThread extends Subject<Comment> {
 
     private BacklogItem backlogItem;
     private List<Comment> comments;
@@ -21,6 +22,7 @@ public class DiscussionThread {
 
     public void addComment(Comment comment){
         this.comments.add(comment);
+        this.notify(comment);
     }
 
     public void removeComment(Comment comment){

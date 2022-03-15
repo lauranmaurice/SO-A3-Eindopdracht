@@ -1,6 +1,7 @@
 package eindopdracht.domain;
 
 import eindopdracht.domain.backlog.Backlog;
+import eindopdracht.domain.observers.Subject;
 import eindopdracht.domain.sprintstate.SprintClosedState;
 import eindopdracht.domain.sprintstate.SprintCreatedState;
 import eindopdracht.domain.sprintstate.SprintFinishedState;
@@ -9,7 +10,7 @@ import eindopdracht.domain.sprintstate.SprintRunningPipelineState;
 import eindopdracht.domain.sprintstate.SprintStartedState;
 import eindopdracht.domain.sprintstate.SprintState;
 
-public class Sprint {
+public class Sprint extends Subject<SprintState> {
 
     private String sprintName;
     private int sprintNumber;
@@ -65,6 +66,7 @@ public class Sprint {
 
     public void setState(SprintState state){
         this.state = state;
+        this.notify(state);
     }
 
     public SprintState getCreatedState(){
@@ -83,7 +85,7 @@ public class Sprint {
         return this.runningPipelineState;
     }
 
-    public SprintState getReviewDone(){
+    public SprintState getReviewDoneState(){
         return this.reviewDoneState;
     }
 
@@ -125,5 +127,9 @@ public class Sprint {
 
     public String uploadReview(){
         return this.state.uploadReview();
+    }
+
+    public SprintState getState(){
+        return this.state;
     }
 }

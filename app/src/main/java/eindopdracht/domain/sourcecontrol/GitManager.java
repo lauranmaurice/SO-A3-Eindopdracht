@@ -1,12 +1,21 @@
 package eindopdracht.domain.sourcecontrol;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * GitManager
  */
 public class GitManager implements SourceControlManager {
+    public List<String> commandHistory;
+
+    public GitManager() {
+        commandHistory = new ArrayList<>();
+    }
 
     private void runCliCmd(String command) {
         System.err.println("Running git-cli command: "+command);
+        commandHistory.add(command);
     }
 
     @Override

@@ -1,8 +1,18 @@
 package eindopdracht.domain.sourcecontrol;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SvnManager implements SourceControlManager {
+    public List<String> commandHistory;
+
+    public SvnManager() {
+        commandHistory = new ArrayList<>();
+    }
+
     private void runCliCmd(String command) {
         System.err.println("Running svn-cli command: "+command);
+        commandHistory.add(command);
     }
 
     @Override
