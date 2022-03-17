@@ -9,7 +9,7 @@ import eindopdracht.domain.behaviour.TestNever;
 
 public class TestHelper {
     public static Person giveMeAScrumMaster() {
-        var master = new Person("henk", "henk@mail.ru", "", new DevelopNever(), new TestNever(), new ScrumAll());
+        var master = new Person("master", "master@mail.ru", "", new DevelopNever(), new TestNever(), new ScrumAll());
         return master;
     }
 

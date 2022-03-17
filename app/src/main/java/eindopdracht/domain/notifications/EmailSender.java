@@ -15,6 +15,10 @@ public class EmailSender implements NotificationSender {
         this.inbox = new ArrayList<>();
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public void send(String message) {
         System.out.println("Sending email to "+this.email+", message: "+message);
