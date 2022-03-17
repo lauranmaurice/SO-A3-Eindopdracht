@@ -1,6 +1,7 @@
 package eindopdracht.observertests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -64,7 +65,7 @@ public class SprintObserverTests {
     @Test
     public void scrumMasterReceivesIfFromInTestToToDo() {
         var task = new BacklogItem(1, "Lets go", "een omschrijving");
-        
+
         task.setState(task.getTestingState());
         sprint1.getBacklog().addItem(task);
 
