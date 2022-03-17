@@ -43,38 +43,42 @@ public abstract class RapportTemplate {
         return stringBuilder.toString();
     }
 
+    public Sprint getSprint(){
+        return this.sprint;
+    }
+
     public void setSprint(int sprintNumber){
         int realNumber = sprintNumber - 1;
+        // realnumber = 1
         List<Sprint> sprints = project.getSprints();
-        if (realNumber >= 0 && realNumber - 1 == sprints.size()){
-            this.sprint = sprints.get(realNumber - 1);
+        if (realNumber >= 0 && realNumber <= sprints.size()){
+            this.sprint = sprints.get(realNumber);
         } else {
             System.err.println("Sprintnumber is out of scope.");
         }
+    } 
 
+    public String getHeader(){
+        return this.header;
     }
 
     public void setHeader(String title, String imageUrl){
         this.header = "==" + title + "==   " + imageUrl;
     }
 
-    public String getHeader(){
-        return this.header;
+    public String getFooter(){
+        return this.footer;
     }
 
     public void setFooter(String footer){
         this.footer = footer; 
     }
 
-    public String getFooter(){
-        return this.footer;
-    }
-
     public String getTasks(){
         List<BacklogItem> backlogItems = this.sprint.getBacklog().getBacklogItems();
         List<BacklogItem> notFinished = new ArrayList<>(); 
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("========================= \n Tasks finished \n ====================");
+        stringBuilder.append("========================= \n Tasks finished \n ==================== \n");
         for (BacklogItem backlogItem : backlogItems) {
             if (backlogItem.getState() == backlogItem.getDoneState() || backlogItem.getState() == backlogItem.getClosedState()){
                 stringBuilder.append(backlogItem.toString() + "\n"); 
@@ -82,7 +86,7 @@ public abstract class RapportTemplate {
                 notFinished.add(backlogItem);
             }
         }
-        stringBuilder.append("====================== \n Tasks not finished \n ==================");
+        stringBuilder.append("====================== \n Tasks not finished \n ================== \n");
         for (BacklogItem backlogItem : notFinished) {
             stringBuilder.append(backlogItem.toString() + "\n");
         }

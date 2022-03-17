@@ -29,6 +29,8 @@ public class Project {
 
         if(!scrumMaster.canScrum()) {
             throw new UnsupportedOperationException("This person has no scrum master behavior");
+        } else {
+            this.scrumMaster = scrumMaster;
         }
 
         var scrumMasterTaskObserver = new TaskObserver();

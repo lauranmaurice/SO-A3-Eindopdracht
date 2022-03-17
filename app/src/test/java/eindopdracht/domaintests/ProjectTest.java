@@ -11,10 +11,8 @@ import eindopdracht.domain.ProductOwner;
 import eindopdracht.domain.Project;
 import eindopdracht.domain.Sprint;
 import eindopdracht.domain.behaviour.DevelopAll;
-import eindopdracht.domain.behaviour.DevelopNever;
 import eindopdracht.domain.behaviour.ScrumAll;
 import eindopdracht.domain.behaviour.TestAll;
-import eindopdracht.domain.behaviour.TestNever;
 
 /**
  * ProjectTest
