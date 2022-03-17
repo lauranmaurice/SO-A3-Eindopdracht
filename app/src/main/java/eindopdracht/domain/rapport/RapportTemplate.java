@@ -30,9 +30,9 @@ public abstract class RapportTemplate {
         // header
         stringBuilder.append(getHeader() + "\n");
         //po
-        stringBuilder.append(getProductOwner()) + "\n";
+        stringBuilder.append(getProductOwner() + "\n");
         // scrummaster
-        stringBuilder.append(getScrumMaster()) + "\n";
+        stringBuilder.append(getScrumMaster() + "\n");
         // teamsamenstelling
         stringBuilder.append(teamComposition());
         // tasks
