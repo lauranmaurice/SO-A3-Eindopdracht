@@ -8,7 +8,7 @@ import eindopdracht.domain.notifications.NotificationSender;
 /**
  * NotificationObserver
  */
-public class NotificationObserver<T> extends Observer<T> {
+public class NotificationObserver<T> implements Observer<T> {
 
     private List<NotificationSender> senders;
 

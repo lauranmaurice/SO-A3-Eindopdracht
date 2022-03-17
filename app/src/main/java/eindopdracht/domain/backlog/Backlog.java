@@ -31,14 +31,14 @@ public class Backlog {
     // epics functions
     public List<Epic> getEpics() {
 
-        return items.stream().filter(Epic.class::isInstance).map(s -> (Epic)s).toList();
+        return items.stream().filter(Epic.class::isInstance).map(Epic.class::cast).toList();
     }
 
     public List<BacklogItem> getBacklogItems() {
 
         return items.stream()
             .filter(BacklogItem.class::isInstance)
-            .map(s -> (BacklogItem)s)
+            .map(BacklogItem.class::cast)
             .toList();
     }
 
