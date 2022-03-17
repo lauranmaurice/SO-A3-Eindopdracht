@@ -123,8 +123,11 @@ public abstract class BacklogComponent extends Subject<ItemState> {
     }
     
     public void setState(ItemState state) {
+        if(this.state == this.testingState && state == this.toDoState) {
+            this.notify(state);
+        }
+
         this.state = state;
-        this.notify(state);
     }
     
 

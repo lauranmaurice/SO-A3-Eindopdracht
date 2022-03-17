@@ -10,4 +10,8 @@ public class BacklogItem extends BacklogComponent {
 
     }
 
+    public String toString(){
+        return this.getNumber() + "" + this.getTitle(); 
+    }
+
 }

@@ -1,8 +1,14 @@
 package eindopdracht.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import eindopdracht.domain.behaviour.DeveloperBehaviour;
 import eindopdracht.domain.behaviour.ScrumMasterBehaviour;
 import eindopdracht.domain.behaviour.TestBehaviour;
+import eindopdracht.domain.notifications.EmailSender;
+import eindopdracht.domain.notifications.NotificationSender;
+import eindopdracht.domain.observers.NotificationObserver;
 
 /**
  * Person
@@ -15,6 +21,7 @@ public class Person {
     private DeveloperBehaviour developerBehaviour;
     private TestBehaviour testerBehaviour;
     private ScrumMasterBehaviour scrumMasterBehaviour;
+    private List<NotificationSender> notificationSenders;
 
     public Person(String name, String email, String phonenumber, DeveloperBehaviour developerBehaviour, TestBehaviour testerBehaviour, ScrumMasterBehaviour scrumMasterBehaviour){
         setName(name);
@@ -23,6 +30,20 @@ public class Person {
         setDeveloperBehaviour(developerBehaviour);
         setTesterBehaviour(testerBehaviour);
         setScrumMasterBehaviour(scrumMasterBehaviour);
+
+        //TODO: preferences
+        notificationSenders = new ArrayList<>();
+        notificationSenders.add(new EmailSender(this.email));
+    }
+
+    public void addMethods(NotificationObserver observer) {
+        for (var s : notificationSenders) {
+            observer.addNotificationSender(s);
+        }
+    }
+
+    public List<NotificationSender> getNotificationSenders() {
+        return notificationSenders;
     }
 
     public String develop(){

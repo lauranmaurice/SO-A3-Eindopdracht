@@ -5,13 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import eindopdracht.TestHelper;
 import eindopdracht.domain.Person;
 import eindopdracht.domain.ProductOwner;
 import eindopdracht.domain.Project;
 import eindopdracht.domain.Sprint;
 import eindopdracht.domain.behaviour.DevelopAll;
+import eindopdracht.domain.behaviour.DevelopNever;
 import eindopdracht.domain.behaviour.ScrumAll;
 import eindopdracht.domain.behaviour.TestAll;
+import eindopdracht.domain.behaviour.TestNever;
 
 /**
  * ProjectTest
@@ -20,11 +23,13 @@ public class ProjectTest {
 
     private static Project project;
     private static ProductOwner productOwner;
+    private static Person scrumMaster;
     
     @BeforeAll
     public static void prepare(){
+        scrumMaster = TestHelper.giveMeAScrumMaster();
         productOwner = new ProductOwner("Tobi", "0682123143", "Tobi@home.nl");
-        project = new Project("Shampoo", productOwner);
+        project = new Project("Shampoo", scrumMaster, productOwner);
 
     }
     
@@ -41,14 +46,14 @@ public class ProjectTest {
 
     @Test
     public void addSprint(){
-        Sprint sprint = new Sprint("Sprint 1", 1);
+        Sprint sprint = new Sprint("Sprint 1", 1, scrumMaster);
         project.addSprint(sprint);
         assertEquals(sprint, project.getSprints().get(0));
     }
 
     @Test
     public void removeSprint(){
-        Sprint sprint = new Sprint("Sprint 1", 1);
+        Sprint sprint = new Sprint("Sprint 1", 1, scrumMaster);
         project.addSprint(sprint);
         project.removeSprint(sprint);
         assertEquals(0, project.getSprints().size());

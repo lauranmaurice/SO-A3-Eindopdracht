@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import eindopdracht.TestHelper;
 import eindopdracht.domain.Sprint;
 
 public class SprintClosedStateTest {
@@ -13,7 +14,7 @@ public class SprintClosedStateTest {
     
     @BeforeAll
     public static void prepare(){
-        sprint = new Sprint("eerste sprint", 1);
+        sprint = new Sprint("eerste sprint", 1, TestHelper.giveMeAScrumMaster());
         sprint.setState(sprint.getClosedState());
 
     }

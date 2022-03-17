@@ -2,6 +2,7 @@ package eindopdracht.domain;
 
 import eindopdracht.domain.backlog.Backlog;
 import eindopdracht.domain.observers.Subject;
+import eindopdracht.domain.observers.TaskObserver;
 import eindopdracht.domain.sprintstate.SprintClosedState;
 import eindopdracht.domain.sprintstate.SprintCreatedState;
 import eindopdracht.domain.sprintstate.SprintFinishedState;
@@ -26,10 +27,14 @@ public class Sprint extends Subject<SprintState> {
 
     SprintState state = createdState;
 
-    public Sprint(String sprintName, int sprintNumber) {
+    public Sprint(String sprintName, int sprintNumber, Person scrumMaster) {
         this.setSprintName(sprintName);
         this.setSprintNumber(sprintNumber);
-        this.backlog = new Backlog();
+
+        var scrumMasterTaskObserver = new TaskObserver();
+        scrumMaster.addMethods(scrumMasterTaskObserver);
+        
+        this.backlog = new Backlog(scrumMasterTaskObserver);
         this.forum = new Forum();
 
         createdState = new SprintCreatedState(this);

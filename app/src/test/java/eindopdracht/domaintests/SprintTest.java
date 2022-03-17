@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import eindopdracht.TestHelper;
 import eindopdracht.domain.Sprint;
+
 
 public class SprintTest {
     
@@ -13,7 +15,7 @@ public class SprintTest {
     
     @BeforeAll
     public static void prepare(){
-        sprint = new Sprint("Sprint 1", 1);
+        sprint = new Sprint("Sprint 1", 1, TestHelper.giveMeAScrumMaster());
     }
     
     @Test

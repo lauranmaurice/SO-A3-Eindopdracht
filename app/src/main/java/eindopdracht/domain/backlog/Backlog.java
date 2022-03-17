@@ -3,18 +3,29 @@ package eindopdracht.domain.backlog;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
+import eindopdracht.domain.observers.TaskObserver;
+
 /**
  * Backlog
  */
 public class Backlog {
     private List<BacklogComponent> items;
 
-    public Backlog() { 
+    @Nullable
+    private TaskObserver scrumMasterTaskObserver;
+
+    public Backlog(@Nullable TaskObserver scrumMasterTaskObserver) { 
+        this.scrumMasterTaskObserver = scrumMasterTaskObserver;
         this.items = new ArrayList<>();
     }
 
     public void addItem(BacklogComponent item) {
         this.items.add(item);
+        if(this.scrumMasterTaskObserver != null) {
+            this.scrumMasterTaskObserver.subscribeTo(item);
+        }
     }
 
     // epics functions

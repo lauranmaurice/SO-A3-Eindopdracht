@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import eindopdracht.TestHelper;
 import eindopdracht.domain.Sprint;
 
 public class SprintRunningPipelineStateTest {
@@ -13,7 +14,7 @@ public class SprintRunningPipelineStateTest {
 
     @BeforeEach
     public void prepare(){
-        sprint = new Sprint("eerste sprint", 1);
+        sprint = new Sprint("eerste sprint", 1, TestHelper.giveMeAScrumMaster());
         sprint.setState(sprint.getRunningPipelineState());
 
     }

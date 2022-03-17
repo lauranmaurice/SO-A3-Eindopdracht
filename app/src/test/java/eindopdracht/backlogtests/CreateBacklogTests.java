@@ -9,6 +9,7 @@ import eindopdracht.domain.backlog.Backlog;
 import eindopdracht.domain.backlog.BacklogItem;
 import eindopdracht.domain.backlog.BacklogTask;
 import eindopdracht.domain.backlog.Epic;
+import eindopdracht.domain.observers.TaskObserver;
 
 /**
  * CreateBacklogTests
@@ -18,7 +19,7 @@ public class CreateBacklogTests {
 
     @BeforeEach
     public void prepareBacklog() {
-        this.testBacklog = new Backlog();
+        this.testBacklog = new Backlog(new TaskObserver());
         
         var e1 = new Epic(1, "Epic 1", "What should we say?");
         var e2 = new Epic(2, "Epic 2", "He walked down the river");
@@ -48,7 +49,7 @@ public class CreateBacklogTests {
     
     @Test
     public void canCreateBacklogWithEpicsAndItems() {
-        var backlog = new Backlog();
+        var backlog = new Backlog(new TaskObserver());
 
         var epic = new Epic(1, "AnEpic", "It's Epic!");
         var item = new BacklogItem(1, "Item", "Just an item");

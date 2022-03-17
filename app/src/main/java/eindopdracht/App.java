@@ -1,9 +1,14 @@
 package eindopdracht;
 
+import eindopdracht.domain.Person;
 import eindopdracht.domain.backlog.Backlog;
 import eindopdracht.domain.backlog.BacklogItem;
 import eindopdracht.domain.backlog.BacklogTask;
 import eindopdracht.domain.backlog.Epic;
+import eindopdracht.domain.behaviour.DevelopNever;
+import eindopdracht.domain.behaviour.ScrumAll;
+import eindopdracht.domain.behaviour.TestNever;
+import eindopdracht.domain.observers.TaskObserver;
 
 public class App {
     public String getGreeting() {
@@ -11,7 +16,10 @@ public class App {
     }
 
     public static void main(String[] args) {
-        Backlog backlog = new Backlog();
+        var master = new Person("henk", "henk@mail.ru", "123456", new DevelopNever(), new TestNever(), new ScrumAll());
+        var masterObserver = new TaskObserver();
+        master.addMethods(masterObserver);
+        Backlog backlog = new Backlog(masterObserver);
         Epic surfingEpic = new Epic(1, "Surfing", "We need to surf at the beach");
         Epic sunbathingEpic = new Epic(2, "Sunbathing", "Enjoy the sun.");
         
