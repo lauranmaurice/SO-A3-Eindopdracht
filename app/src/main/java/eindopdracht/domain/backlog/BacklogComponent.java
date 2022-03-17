@@ -132,7 +132,7 @@ public abstract class BacklogComponent extends Subject<ItemState> {
     
 
     public void setCompleted(@Nullable Boolean completed) {
-        if (this.items.size() == 0) {
+        if (this.items.isEmpty()) {
             this.completed = completed;
         } else {
             this.completed = this.isCompleted();
@@ -144,8 +144,8 @@ public abstract class BacklogComponent extends Subject<ItemState> {
     }
 
     public boolean isCompleted() {
-        if(this.items.size() > 0) {
-            return this.items.stream().allMatch(x -> x.isCompleted() == true);
+        if(!this.items.isEmpty()) {
+            return this.items.stream().allMatch(x -> x.isCompleted());
         } 
 
         return this.completed;

@@ -19,21 +19,22 @@ public class SprintObserverTests {
     private static Sprint sprint1;
 
     @BeforeAll
-    public void setup() {
+    public static void setup() {
         master = TestHelper.giveMeAScrumMaster();
         project = new Project("TheCircle", master, new ProductOwner("henk", "", "po@circle.me"));
         sprint1 = new Sprint("1", 1, master);
+        var developer = TestHelper.giveMeADev();
+        project.addPerson(developer);
+        project.addSprint(sprint1);
     }
 
 
     @Test
     public void canNotifyPeopleWhenStateChanges() {
-        var developer = TestHelper.giveMeADev();
-        project.addPerson(developer);
-        project.addSprint(sprint1);
-        
+        var developer = project.getPersons().get(0);        
         //clear inboxes
         for (var s : developer.getNotificationSenders()) {
+            System.out.println("Clearing sender");
             s.getInbox().clear();
         }
 
@@ -41,9 +42,8 @@ public class SprintObserverTests {
     
         for (var s : developer.getNotificationSenders()) {
             assertEquals(1, s.getInbox().size());
+            System.out.println("inbox:"+s.getInbox().get(0));
         }
-
-        //TODO: test if henk@mail.ru received email
     }
 
     @Test
@@ -51,15 +51,14 @@ public class SprintObserverTests {
         var bas = TestHelper.giveMeADev();
         bas.setName("Bas");
         bas.setEmail("bas@bar.org");
+
+        project.addPerson(bas);
         
-        System.out.println("im here!");
         sprint1.setState(sprint1.getReviewDoneState());
 
         assertEquals(1, bas.getNotificationSenders().get(0).getInbox().size());
         var henk = project.getPersons().get(0);
         assertTrue(henk.getNotificationSenders().get(0).getInbox().size() >= 1);
-
-        //TODO: test if bas and henk received email
     }
 
     @Test
@@ -71,6 +70,7 @@ public class SprintObserverTests {
 
         var item = sprint1.getBacklog().getItems().get(0);
         item.setState(item.getToDoState());
-        //TODO: test if scrum master receives email
+
+        assertEquals(1, master.getNotificationSenders().get(0).getInbox().size());
     }
 }

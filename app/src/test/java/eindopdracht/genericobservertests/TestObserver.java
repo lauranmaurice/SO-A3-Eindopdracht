@@ -5,7 +5,7 @@ import eindopdracht.domain.observers.Observer;
 /**
  * TestObserver
  */
-public class TestObserver extends Observer<String> {
+public class TestObserver implements Observer<String> {
     public String value;
 
 	@Override

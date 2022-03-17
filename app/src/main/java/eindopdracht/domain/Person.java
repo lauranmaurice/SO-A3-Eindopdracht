@@ -22,10 +22,11 @@ public class Person {
     private TestBehaviour testerBehaviour;
     private ScrumMasterBehaviour scrumMasterBehaviour;
     private List<NotificationSender> notificationSenders;
+    private EmailSender mailSender;
 
     public Person(String name, String email, String phonenumber, DeveloperBehaviour developerBehaviour, TestBehaviour testerBehaviour, ScrumMasterBehaviour scrumMasterBehaviour){
         setName(name);
-        setEmail(email);
+        this.email = email;
         setPhonenumber(phonenumber);
         setDeveloperBehaviour(developerBehaviour);
         setTesterBehaviour(testerBehaviour);
@@ -33,7 +34,8 @@ public class Person {
 
         //TODO: preferences
         notificationSenders = new ArrayList<>();
-        notificationSenders.add(new EmailSender(this.email));
+        mailSender = new EmailSender(this.email);
+        notificationSenders.add(mailSender);
     }
 
     public void addMethods(NotificationObserver observer) {
@@ -97,6 +99,7 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+        this.mailSender.setEmail(email);
     }
 
     public String getName() {
