@@ -9,7 +9,7 @@ import java.util.List;
 public abstract class Subject<T> {
     private List<Observer<T>> observers;
 
-    public Subject()
+    protected Subject()
     {
         observers = new ArrayList<>();
     }
