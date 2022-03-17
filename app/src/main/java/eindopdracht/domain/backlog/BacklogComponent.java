@@ -111,7 +111,7 @@ public abstract class BacklogComponent extends Subject<ItemState> {
     }
 
     public String moveToTested(){
-        return this.state.movedToTested();
+        return this.state.moveToTested();
     }
 
     public String moveToDone(){

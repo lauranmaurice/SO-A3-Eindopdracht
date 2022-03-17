@@ -31,7 +31,7 @@ public class ItemClosedState implements ItemState{
     }
 
     @Override
-    public String movedToTested() {
+    public String moveToTested() {
         return "Can't move from closed state.";
     }
 

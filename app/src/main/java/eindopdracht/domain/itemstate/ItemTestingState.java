@@ -32,7 +32,7 @@ public class ItemTestingState implements ItemState{
     }
 
     @Override
-    public String movedToTested() {
+    public String moveToTested() {
         this.backlogComponent.setState(this.backlogComponent.getTestedState());
         return "Item moved to tested.";
     }

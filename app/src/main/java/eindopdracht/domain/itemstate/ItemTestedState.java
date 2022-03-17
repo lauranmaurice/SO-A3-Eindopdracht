@@ -32,13 +32,13 @@ public class ItemTestedState implements ItemState{
     }
 
     @Override
-    public String movedToTested() {
+    public String moveToTested() {
         return "Can't move to tested from tested.";
     }
 
     @Override
     public String moveToDone() {
-        this.backlogComponent.setCompleted(true);
+        this.backlogComponent.setState(this.backlogComponent.getDoneState());
         return "Moved to done";
     }
 

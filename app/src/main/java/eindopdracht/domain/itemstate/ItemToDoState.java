@@ -32,7 +32,7 @@ public class ItemToDoState implements ItemState{
     }
 
     @Override
-    public String movedToTested() {
+    public String moveToTested() {
         return "Can't move to tested from toDo.";
     }
 

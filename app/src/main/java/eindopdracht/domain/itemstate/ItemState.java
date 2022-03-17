@@ -6,7 +6,7 @@ public interface ItemState {
     public String moveToDoing();
     public String moveToReadyForTesting();
     public String moveToTesting();
-    public String movedToTested();
+    public String moveToTested();
     public String moveToDone();
     public String moveToClosed();
 
