@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eindopdracht.domain.backlog.BacklogItem;
+import eindopdracht.domain.observers.NotificationObserver;
+import eindopdracht.domain.observers.Observer;
 import eindopdracht.domain.observers.Subject;
 
 public class DiscussionThread extends Subject<Comment> {
@@ -14,6 +16,12 @@ public class DiscussionThread extends Subject<Comment> {
     public DiscussionThread(BacklogItem backlogItem){
         this.backlogItem = backlogItem;
         comments = new ArrayList<>();
+    }
+
+    @Override
+    public void register(Observer<Comment> observer) {
+        this.backlogItem.getDeveloper().addMethods((NotificationObserver<Comment>)observer);
+        super.register(observer);
     }
 
     public BacklogItem getBacklogItem(){
