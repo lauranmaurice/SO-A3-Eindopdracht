@@ -1,14 +1,15 @@
 package eindopdracht.domain.rapport;
 
 import eindopdracht.domain.Project;
+import eindopdracht.domain.factories.AdapterFactory;
 
 /**
  * ExternRapportGenerator
  */
 public class ExternRapportGenerator extends RapportTemplate{
 
-	public ExternRapportGenerator(Project project) {
-		super(project);
+	public ExternRapportGenerator(Project project, AdapterFactory exportAdapterFactory) {
+		super(project, exportAdapterFactory);
 	}
 
 	@Override

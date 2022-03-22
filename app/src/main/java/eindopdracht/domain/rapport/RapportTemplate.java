@@ -6,6 +6,8 @@ import java.util.List;
 import eindopdracht.domain.Project;
 import eindopdracht.domain.Sprint;
 import eindopdracht.domain.backlog.BacklogItem;
+import eindopdracht.domain.export.ExportAdapter;
+import eindopdracht.domain.factories.AdapterFactory;
 
 /**
  * RapportTemplate
@@ -16,14 +18,21 @@ public abstract class RapportTemplate {
     Sprint sprint;
     String header; 
     String footer;
+    ExportAdapter exportAdapter;
+    AdapterFactory adapterFactory;
     
-    public RapportTemplate(Project project){
+    public RapportTemplate(Project project, AdapterFactory adapterFactory){
         this.project = project;
         this.sprint = project.getSprints().get(0);
         this.header = "==" + project.getName() + "==   www.ourimageurl.com";
         this.footer = "";
+        this.adapterFactory = adapterFactory;
     }
 
+    public void useExportAdapter(String name) {
+        //call factory with "png" or "pdf"
+        this.exportAdapter = this.adapterFactory.createAdapter(name);
+    }
 
     public final String run(){
         StringBuilder stringBuilder = new StringBuilder();
@@ -39,8 +48,8 @@ public abstract class RapportTemplate {
         stringBuilder.append(getTasks());
         // footer
         stringBuilder.append(getFooter());
-
-        return stringBuilder.toString();
+        //export
+        return this.export(stringBuilder.toString());
     }
 
     public Sprint getSprint(){
@@ -101,8 +110,12 @@ public abstract class RapportTemplate {
         return "Scrum Master: " + project.getScrumMaster().getName();
     }
 
+    public String export(String string){
+        return this.exportAdapter.export(string);
+    }
 
     public abstract String teamComposition();
+
 
 }
 

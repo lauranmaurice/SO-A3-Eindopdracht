@@ -16,6 +16,8 @@ import eindopdracht.domain.behaviour.ScrumAll;
 import eindopdracht.domain.behaviour.ScrumNever;
 import eindopdracht.domain.behaviour.TestAll;
 import eindopdracht.domain.behaviour.TestNever;
+import eindopdracht.domain.factories.AdapterFactory;
+import eindopdracht.domain.factories.ExportAdapterFactory;
 import eindopdracht.domain.rapport.InternRapportGenerator;
 import eindopdracht.domain.rapport.RapportTemplate;
 
@@ -31,6 +33,7 @@ public class InternRapportGeneratorTest {
 
     @BeforeEach
     public void prepare(){
+        AdapterFactory adapterFactory = new ExportAdapterFactory();
         Person scrumMaster = new Person("Velocidrome", "velocidrome@gmail.com", "0620483201", new DevelopNever(), new TestNever(), new ScrumAll());
         ProductOwner productOwner = new ProductOwner("Velociraptor", "0682301243", "raptor@gmail.com");
         teamDeveloper = new Person("Gendrome", "gendrome@gmail.com", "0638282383", new DevelopAll(), new TestNever(), new ScrumNever());
@@ -51,7 +54,8 @@ public class InternRapportGeneratorTest {
         project.addPerson(teamDeveloper);
         project.addPerson(teamTester);
         
-        rapportTemplate = new InternRapportGenerator(project);
+        rapportTemplate = new InternRapportGenerator(project, adapterFactory);
+        rapportTemplate.useExportAdapter("png");
 
     }
 
@@ -65,7 +69,7 @@ public class InternRapportGeneratorTest {
 
     @Test
     public void run(){
-        String expected = "==Soup==   www.ourimageurl.com\n" + 
+        String expected = "<==Soup==   www.ourimageurl.com\n" + 
         "Product Owner: Velociraptor\n" +
         "Scrum Master: Velocidrome\n" +
         "Team members: \n" 
@@ -75,7 +79,7 @@ public class InternRapportGeneratorTest {
         backlogItemOne.toString() + "\n" +
         "====================== \n Tasks not finished \n ================== \n" + 
         backlogItemTwo.toString() + "\n" +
-        "";
+        "> Has been exported as PNG.";
         assertEquals(expected, rapportTemplate.run());
     }
 }

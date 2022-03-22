@@ -13,6 +13,8 @@ import eindopdracht.domain.backlog.BacklogItem;
 import eindopdracht.domain.behaviour.DevelopNever;
 import eindopdracht.domain.behaviour.ScrumAll;
 import eindopdracht.domain.behaviour.TestNever;
+import eindopdracht.domain.factories.AdapterFactory;
+import eindopdracht.domain.factories.ExportAdapterFactory;
 import eindopdracht.domain.rapport.InternRapportGenerator;
 import eindopdracht.domain.rapport.RapportTemplate;
 
@@ -27,6 +29,7 @@ public class rapportTemplateTest {
 
     @BeforeEach
     public void prepare(){
+        AdapterFactory adapterFactory = new ExportAdapterFactory();
         Person scrumMaster = new Person("Velocidrome", "velocidrome@gmail.com", "0620483201", new DevelopNever(), new TestNever(), new ScrumAll());
         ProductOwner productOwner = new ProductOwner("Velociraptor", "0682301243", "raptor@gmail.com");
         
@@ -43,7 +46,7 @@ public class rapportTemplateTest {
         project.addSprint(sprintOne);
         project.addSprint(sprintTwo);
         
-        rapportTemplate = new InternRapportGenerator(project);
+        rapportTemplate = new InternRapportGenerator(project, adapterFactory);
 
     }
 

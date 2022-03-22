@@ -16,6 +16,8 @@ import eindopdracht.domain.behaviour.ScrumAll;
 import eindopdracht.domain.behaviour.ScrumNever;
 import eindopdracht.domain.behaviour.TestAll;
 import eindopdracht.domain.behaviour.TestNever;
+import eindopdracht.domain.factories.AdapterFactory;
+import eindopdracht.domain.factories.ExportAdapterFactory;
 import eindopdracht.domain.rapport.ExternRapportGenerator;
 import eindopdracht.domain.rapport.RapportTemplate;
 
@@ -30,6 +32,7 @@ public class ExternRapportGeneratorTest {
 
     @BeforeEach
     public void prepare(){
+        AdapterFactory adapterFactory = new ExportAdapterFactory();
         Person scrumMaster = new Person("Velocidrome", "velocidrome@gmail.com", "0620483201", new DevelopNever(), new TestNever(), new ScrumAll());
         ProductOwner productOwner = new ProductOwner("Velociraptor", "0682301243", "raptor@gmail.com");
         Person teamDeveloper = new Person("Gendrome", "gendrome@gmail.com", "0638282383", new DevelopAll(), new TestNever(), new ScrumNever());
@@ -50,7 +53,8 @@ public class ExternRapportGeneratorTest {
         project.addPerson(teamDeveloper);
         project.addPerson(teamTester);
         
-        rapportTemplate = new ExternRapportGenerator(project);
+        rapportTemplate = new ExternRapportGenerator(project, adapterFactory);
+        rapportTemplate.useExportAdapter("pdf");
 
     }
 
@@ -62,14 +66,14 @@ public class ExternRapportGeneratorTest {
     @Test
     public void run()
     {
-        String expected = "==Soup==   www.ourimageurl.com\n" + 
+        String expected = "<==Soup==   www.ourimageurl.com\n" + 
         "Product Owner: Velociraptor\n" +
         "Scrum Master: Velocidrome\n" +
         "========================= \n Tasks finished \n ==================== \n" +
         backlogItemOne.toString() + "\n" +
         "====================== \n Tasks not finished \n ================== \n" + 
         backlogItemTwo.toString() + "\n" +
-        "";
+        "> Has been exported as a pdf.";
         assertEquals(expected, rapportTemplate.run());
     }
     
