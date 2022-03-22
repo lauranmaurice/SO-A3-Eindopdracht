@@ -30,12 +30,10 @@ public class Backlog {
 
     // epics functions
     public List<Epic> getEpics() {
-
         return items.stream().filter(Epic.class::isInstance).map(Epic.class::cast).toList();
     }
 
     public List<BacklogItem> getBacklogItems() {
-
         return items.stream()
             .filter(BacklogItem.class::isInstance)
             .map(BacklogItem.class::cast)

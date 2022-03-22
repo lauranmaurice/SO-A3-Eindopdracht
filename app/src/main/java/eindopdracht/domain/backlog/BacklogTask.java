@@ -4,7 +4,6 @@ package eindopdracht.domain.backlog;
  * BacklogTask
  */
 public class BacklogTask extends BacklogComponent {
-
 	public BacklogTask(int number, String title, String description) {
 		super(number, title, description);
 	}
