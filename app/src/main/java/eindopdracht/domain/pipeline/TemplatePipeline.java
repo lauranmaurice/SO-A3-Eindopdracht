@@ -2,15 +2,17 @@ package eindopdracht.domain.pipeline;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * TemplatePipeline
  */
 public abstract class TemplatePipeline {
     public List<String> commandHistory;
+    private PipelineConfiguration configuration;
 
-    protected TemplatePipeline()
-    {
+    protected TemplatePipeline(PipelineConfiguration configuration) {
+        this.configuration = configuration;
         commandHistory = new ArrayList<>();
     }
 
@@ -32,6 +34,10 @@ public abstract class TemplatePipeline {
         commandHistory.add(command);
     }
 
+    private final TestResults collectTestResults() {
+        return new TestResults(new Random().nextDouble(0, 100), true);
+    }
+
     public abstract String[] collectSources();
 
     public abstract void installPackages();
@@ -41,12 +47,31 @@ public abstract class TemplatePipeline {
     public abstract void runTests();
 
     public void analyze(String[] sources) {
-        System.err.println("No analysis configured. Skipping");
+        prepareAnalysis();
+        executeAnalysis();
+        var results = reportAnalysis();
+        System.out.println("Test success: "+ results.isSuccess()+", coverage: " + results.getCoverage() + "%");
     }
+
+    public void prepareAnalysis(){}
+    public void executeAnalysis(){}
+    public TestResults reportAnalysis(){
+        return this.collectTestResults();
+    };
 
     public abstract void deploy();
 
     public void runUtilities() {
-        System.err.println("No utilities are configured. Skipping");
+        if(this.configuration.getUtilityCommands().length > 0) {
+            for (String command : this.configuration.getUtilityCommands()) {
+                this.runCliCommand(command);
+            }
+        }
+
+        if(this.configuration.getUtilityScripts().length > 0) {
+            for(var script : this.configuration.getUtilityScripts()) {
+                this.runCliCommand("bash -c " + script);
+            }
+        }
     }
 }

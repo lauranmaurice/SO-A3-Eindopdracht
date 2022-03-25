@@ -1,11 +1,10 @@
 package eindopdracht.domain.pipeline;
 
 /**
- * GradlePipeline
+ * AntPipeline
  */
-public class GradlePipeline extends TemplatePipeline {
-
-    public GradlePipeline(PipelineConfiguration configuration) {
+public class AntPipeline extends TemplatePipeline {
+    public AntPipeline(PipelineConfiguration configuration) {
         super(configuration);
     }
 
@@ -16,21 +15,21 @@ public class GradlePipeline extends TemplatePipeline {
 
     @Override
     public void installPackages() {
-        runCliCommand("gradle build --refresh-dependencies");
+        this.runCliCommand("ant install");
     }
 
     @Override
     public void build() {
-        runCliCommand("gradle build");
+        this.runCliCommand("ant build");
     }
 
     @Override
     public void runTests() {
-        runCliCommand("gradle test");
+        this.runCliCommand("ant nuke tests");
     }
 
     @Override
     public void deploy() {
-        runCliCommand("gradle deploy");
+        this.runCliCommand("ant deploy");
     } 
 }

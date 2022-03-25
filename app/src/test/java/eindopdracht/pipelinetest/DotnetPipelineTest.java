@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import eindopdracht.domain.pipeline.DotnetPipeline;
+import eindopdracht.domain.pipeline.PipelineConfiguration;
 
 /**
  * DotnetPipelineTest
@@ -13,7 +14,7 @@ public class DotnetPipelineTest {
 
     @Test
     public void CanExecuteCommandsInTemplateOrder() {
-        var pipeline = new DotnetPipeline();
+        var pipeline = new DotnetPipeline(new PipelineConfiguration(new String[]{}, new String[]{}));
         pipeline.run();
 
         assertEquals(4, pipeline.commandHistory.size());
@@ -25,7 +26,7 @@ public class DotnetPipelineTest {
 
     @Test
     public void cantCollectSources() {
-        var pipeline = new DotnetPipeline();
+        var pipeline = new DotnetPipeline(new PipelineConfiguration(new String[]{}, new String[]{}));
         assertEquals(null, pipeline.collectSources());
     }
 }

@@ -5,6 +5,10 @@ package eindopdracht.domain.pipeline;
  */
 public class DotnetPipeline extends TemplatePipeline {
 
+    public DotnetPipeline(PipelineConfiguration configuration) {
+        super(configuration);
+    }
+
     @Override
     public String[] collectSources() {
         return null;
