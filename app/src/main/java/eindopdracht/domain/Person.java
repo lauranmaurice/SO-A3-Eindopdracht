@@ -32,7 +32,6 @@ public class Person {
         setTesterBehaviour(testerBehaviour);
         setScrumMasterBehaviour(scrumMasterBehaviour);
 
-        //TODO: preferences
         notificationSenders = new ArrayList<>();
         mailSender = new EmailSender(this.email);
         notificationSenders.add(mailSender);

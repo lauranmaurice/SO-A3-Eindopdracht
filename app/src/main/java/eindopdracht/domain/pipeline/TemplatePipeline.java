@@ -2,7 +2,6 @@ package eindopdracht.domain.pipeline;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * TemplatePipeline
@@ -35,7 +34,7 @@ public abstract class TemplatePipeline {
     }
 
     private final TestResults collectTestResults() {
-        return new TestResults(new Random().nextDouble(0, 100), true);
+        return new TestResults(82.3, true);
     }
 
     public abstract String[] collectSources();
